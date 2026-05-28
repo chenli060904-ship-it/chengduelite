@@ -1,0 +1,286 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chengdu Elite</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:#0b0b0c;
+      color:white;
+      font-family:Inter,sans-serif;
+      line-height:1.7;
+    }
+
+    .hero{
+      height:100vh;
+      background:
+      linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.85)),
+      url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:20px;
+    }
+
+    .container{
+      max-width:1200px;
+      margin:auto;
+      padding:100px 24px;
+    }
+
+    h1{
+      font-size:72px;
+      font-family:"Playfair Display",serif;
+      font-weight:600;
+      margin-bottom:24px;
+    }
+
+    h2{
+      font-size:48px;
+      font-family:"Playfair Display",serif;
+      margin-bottom:20px;
+    }
+
+    p{
+      color:rgba(255,255,255,.7);
+    }
+
+    .gold{
+      color:#d6b36a;
+      letter-spacing:4px;
+      text-transform:uppercase;
+      font-size:12px;
+      margin-bottom:20px;
+    }
+
+    .btns{
+      margin-top:40px;
+      display:flex;
+      gap:20px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:16px 32px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      font-size:14px;
+      transition:.3s;
+    }
+
+    .primary{
+      background:#d6b36a;
+      color:black;
+    }
+
+    .secondary{
+      background:transparent;
+      color:white;
+      border:1px solid rgba(255,255,255,.2);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+      margin-top:60px;
+    }
+
+    .card{
+      background:#111;
+      border-radius:28px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .card img{
+      width:100%;
+      height:320px;
+      object-fit:cover;
+    }
+
+    .card-content{
+      padding:30px;
+    }
+
+    .card h3{
+      font-size:28px;
+      margin-bottom:14px;
+      font-family:"Playfair Display",serif;
+    }
+
+    .section{
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .lead-form{
+      margin-top:40px;
+      display:grid;
+      gap:20px;
+    }
+
+    input{
+      background:#111;
+      border:1px solid rgba(255,255,255,.1);
+      padding:18px;
+      border-radius:18px;
+      color:white;
+      font-size:16px;
+    }
+
+    footer{
+      padding:40px;
+      text-align:center;
+      color:rgba(255,255,255,.4);
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    @media(max-width:768px){
+      h1{
+        font-size:48px;
+      }
+
+      h2{
+        font-size:36px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<section class="hero">
+  <div>
+    <div class="gold">CHENGDU ELITE</div>
+
+    <h1>
+      Discover Luxury<br>
+      Living in Chengdu
+    </h1>
+
+    <p>
+      Curated premium residences, international lifestyle,
+      and exclusive property opportunities in Western China.
+    </p>
+
+    <div class="btns">
+      <button class="btn primary">Explore Properties</button>
+      <button class="btn secondary">Book Private Viewing</button>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="gold">WHY CHENGDU</div>
+
+    <h2>
+      China’s Hidden Luxury Capital
+    </h2>
+
+    <p>
+      International schools, Michelin dining, luxury residences,
+      relaxed lifestyle, and lower costs than Shanghai or Beijing.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="gold">FEATURED COMMUNITIES</div>
+
+    <h2>Luxury Properties</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-content">
+          <h3>Luxelakes 麓湖</h3>
+
+          <p>
+            International lakeside luxury community for global families.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-content">
+          <h3>Financial City 金融城</h3>
+
+          <p>
+            CBD residences designed for executives and investors.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-content">
+          <h3>Huanhuaxi 浣花溪</h3>
+
+          <p>
+            Chengdu classic luxury surrounded by greenery and culture.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="gold">FOREIGN BUYER GUIDE</div>
+
+    <h2>
+      Get The 2026 Chengdu Luxury Property Guide
+    </h2>
+
+    <p>
+      Learn how foreigners buy property in China,
+      relocation strategies, taxes, luxury communities and investment insights.
+    </p>
+
+    <div class="lead-form">
+      <input placeholder="Your Name">
+      <input placeholder="Email Address">
+      <input placeholder="WhatsApp">
+      <button class="btn primary">
+        Download Free Guide
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 Chengdu Elite — Curated by Xiao Ma Ge
+</footer>
+
+</body>
+</html>
+```
