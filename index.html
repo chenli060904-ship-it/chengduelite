@@ -1,286 +1,850 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chengdu Elite</title>
-
+  <title>Ma & Compass | Chengdu Luxury Homes</title>
+  <meta name="description" content="Ma & Compass helps international buyers discover luxury homes in Chengdu with bilingual advisory, private viewings, and relocation support." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
-
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
+    :root {
+      --bg: #0b0d10;
+      --bg-soft: rgba(255,255,255,0.04);
+      --line: rgba(255,255,255,0.08);
+      --text: #f6f1e8;
+      --muted: rgba(246,241,232,0.72);
+      --gold: #d7b36c;
+      --gold-soft: rgba(215,179,108,0.12);
+      --shadow: 0 40px 80px rgba(0,0,0,0.18);
     }
 
-    body{
-      background:#0b0b0c;
-      color:white;
-      font-family:Inter,sans-serif;
-      line-height:1.7;
-    }
-
-    .hero{
-      height:100vh;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, sans-serif;
+      color: var(--text);
       background:
-      linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.85)),
-      url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1600&auto=format&fit=crop');
-      background-size:cover;
-      background-position:center;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:20px;
+        radial-gradient(circle at top left, rgba(201,166,103,0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(255,255,255,0.08), transparent 24%),
+        linear-gradient(180deg, #0b0d10 0%, #111318 48%, #0a0b0d 100%);
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.18), transparent 70%);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button, input, textarea { font: inherit; }
+    .wrapper { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(8,9,12,0.64);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 0;
+    }
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .brand strong {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 28px;
+      letter-spacing: 0.04em;
+    }
+    .brand span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .pill {
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+    .pill:hover, .pill.active {
+      background: var(--gold);
+      color: #111;
+      border-color: var(--gold);
     }
 
-    .container{
-      max-width:1200px;
-      margin:auto;
-      padding:100px 24px;
+    .hero { padding: 52px 0 34px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+    .kicker {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+      font-size: 12px;
+      margin-bottom: 18px;
+    }
+    h1, h2, h3 {
+      font-family: "Cormorant Garamond", serif;
+      line-height: 1;
+      margin: 0;
+    }
+    h1 {
+      font-size: clamp(52px, 7vw, 92px);
+      max-width: 9ch;
+      letter-spacing: -0.03em;
+    }
+    .lead {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.8;
+      max-width: 58ch;
+      margin-top: 22px;
+    }
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    .cta {
+      border: none;
+      cursor: pointer;
+      padding: 14px 18px;
+      border-radius: 16px;
+      transition: 0.25s;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .cta.primary {
+      background: var(--gold);
+      color: #111;
+      box-shadow: 0 18px 40px rgba(215,179,108,0.22);
+    }
+    .cta.secondary {
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .metric {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 18px;
+      padding: 16px;
+      backdrop-filter: blur(10px);
+    }
+    .metric b {
+      display: block;
+      font-size: 28px;
+      font-family: "Cormorant Garamond", serif;
+    }
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+      line-height: 1.4;
     }
 
-    h1{
-      font-size:72px;
-      font-family:"Playfair Display",serif;
-      font-weight:600;
-      margin-bottom:24px;
+    .hero-card {
+      position: relative;
+      min-height: 560px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(17,19,24,0.18), rgba(17,19,24,0.88)), url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+    }
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(11,13,16,0.05), rgba(11,13,16,0.75) 78%);
+    }
+    .hero-card-content {
+      position: absolute;
+      inset: auto 24px 24px 24px;
+      z-index: 1;
+      display: grid;
+      gap: 12px;
     }
 
-    h2{
-      font-size:48px;
-      font-family:"Playfair Display",serif;
-      margin-bottom:20px;
+    .section { padding: 76px 0; }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+    .section-head p {
+      max-width: 56ch;
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 0;
+    }
+    .panel {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .split { display: grid; grid-template-columns: 1fr 1fr; }
+    .copy-pad { padding: 30px; }
+    .small-caps {
+      color: var(--gold);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+    .title {
+      font-size: clamp(34px, 4vw, 60px);
+      margin-top: 12px;
+    }
+    .text {
+      color: var(--muted);
+      line-height: 1.85;
+      margin-top: 14px;
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(215,179,108,0.12);
+      border: 1px solid rgba(215,179,108,0.2);
+      color: #f7e6bf;
+      font-size: 12px;
+    }
+    .media {
+      position: relative;
+      min-height: 360px;
+      background: #111;
+    }
+    .media img, .media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .media .badge {
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      z-index: 1;
+      background: rgba(11,13,16,0.68);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 12px;
     }
 
-    p{
-      color:rgba(255,255,255,.7);
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card {
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      min-height: 100%;
+    }
+    .card h3 { font-size: 30px; margin-bottom: 10px; }
+    .card p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 0;
+    }
+    .card .meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: var(--gold);
+      font-size: 13px;
     }
 
-    .gold{
-      color:#d6b36a;
-      letter-spacing:4px;
-      text-transform:uppercase;
-      font-size:12px;
-      margin-bottom:20px;
+    .steps { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+    .step {
+      padding: 22px 18px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .step .num {
+      color: var(--gold);
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .step h3 { font-size: 22px; margin: 12px 0 10px; }
+    .step p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+      font-size: 14px;
     }
 
-    .btns{
-      margin-top:40px;
-      display:flex;
-      gap:20px;
-      justify-content:center;
-      flex-wrap:wrap;
+    .timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .story {
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .story .label {
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .story h3 { font-size: 28px; margin: 10px 0 8px; }
+    .story p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 0;
     }
 
-    .btn{
-      padding:16px 32px;
-      border-radius:999px;
-      border:none;
-      cursor:pointer;
-      font-size:14px;
-      transition:.3s;
+    .contact { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 20px; }
+    .form {
+      display: grid;
+      gap: 12px;
+      padding: 30px;
+    }
+    .field {
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      padding: 16px 18px;
+    }
+    .field::placeholder { color: rgba(246,241,232,0.5); }
+    .note {
+      color: rgba(246,241,232,0.6);
+      font-size: 13px;
+      line-height: 1.6;
+      margin-top: 6px;
+    }
+    .contact-list {
+      padding: 30px;
+      display: grid;
+      gap: 14px;
+    }
+    .contact-item {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+    }
+    .contact-item span { color: rgba(246,241,232,0.68); font-size: 13px; }
+    .contact-item b { font-size: 16px; }
+    .contact-item a { color: var(--gold); }
+
+    .footer {
+      padding: 26px 0 40px;
+      color: rgba(246,241,232,0.5);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .floating {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 30;
+    }
+    .float-btn {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(11,13,16,0.78);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.24);
     }
 
-    .primary{
-      background:#d6b36a;
-      color:black;
+    [data-lang="zh"] [data-lang-visible="en"] { display: none !important; }
+    [data-lang="en"] [data-lang-visible="zh"] { display: none !important; }
+
+    @media (max-width: 960px) {
+      .hero-grid, .split, .grid-3, .steps, .timeline, .contact { grid-template-columns: 1fr; }
+      .hero-card { min-height: 420px; }
+      .section-head { flex-direction: column; align-items: flex-start; }
     }
-
-    .secondary{
-      background:transparent;
-      color:white;
-      border:1px solid rgba(255,255,255,.2);
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-      gap:30px;
-      margin-top:60px;
-    }
-
-    .card{
-      background:#111;
-      border-radius:28px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .card img{
-      width:100%;
-      height:320px;
-      object-fit:cover;
-    }
-
-    .card-content{
-      padding:30px;
-    }
-
-    .card h3{
-      font-size:28px;
-      margin-bottom:14px;
-      font-family:"Playfair Display",serif;
-    }
-
-    .section{
-      border-top:1px solid rgba(255,255,255,.08);
-    }
-
-    .lead-form{
-      margin-top:40px;
-      display:grid;
-      gap:20px;
-    }
-
-    input{
-      background:#111;
-      border:1px solid rgba(255,255,255,.1);
-      padding:18px;
-      border-radius:18px;
-      color:white;
-      font-size:16px;
-    }
-
-    footer{
-      padding:40px;
-      text-align:center;
-      color:rgba(255,255,255,.4);
-      border-top:1px solid rgba(255,255,255,.08);
-    }
-
-    @media(max-width:768px){
-      h1{
-        font-size:48px;
-      }
-
-      h2{
-        font-size:36px;
-      }
+    @media (max-width: 640px) {
+      .wrapper { width: min(100% - 20px, 1180px); }
+      .topbar-inner { flex-direction: column; align-items: flex-start; }
+      h1 { max-width: 100%; }
+      .hero { padding-top: 28px; }
+      .hero-metrics { grid-template-columns: 1fr; }
+      .cta, .pill { width: 100%; text-align: center; }
+      .nav-actions { width: 100%; }
     }
   </style>
 </head>
-<body>
-
-<section class="hero">
-  <div>
-    <div class="gold">CHENGDU ELITE</div>
-
-    <h1>
-      Discover Luxury<br>
-      Living in Chengdu
-    </h1>
-
-    <p>
-      Curated premium residences, international lifestyle,
-      and exclusive property opportunities in Western China.
-    </p>
-
-    <div class="btns">
-      <button class="btn primary">Explore Properties</button>
-      <button class="btn secondary">Book Private Viewing</button>
+<body data-lang="en">
+  <header class="topbar">
+    <div class="wrapper topbar-inner">
+      <div class="brand">
+        <strong>Ma & Compass</strong>
+        <span data-i18n="nav_tagline">Luxury property advisory for Chengdu's international lifestyle.</span>
+      </div>
+      <div class="nav-actions">
+        <button class="pill active" data-lang-switch="en">EN</button>
+        <button class="pill" data-lang-switch="zh">中文</button>
+        <a class="pill" href="#properties" data-i18n="nav_properties">Properties</a>
+        <a class="pill" href="#contact" data-i18n="nav_contact">Contact</a>
+      </div>
     </div>
-  </div>
-</section>
+  </header>
 
-<section class="section">
-  <div class="container">
-    <div class="gold">WHY CHENGDU</div>
-
-    <h2>
-      China’s Hidden Luxury Capital
-    </h2>
-
-    <p>
-      International schools, Michelin dining, luxury residences,
-      relaxed lifestyle, and lower costs than Shanghai or Beijing.
-    </p>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-
-    <div class="gold">FEATURED COMMUNITIES</div>
-
-    <h2>Luxury Properties</h2>
-
-    <div class="grid">
-
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop">
-
-        <div class="card-content">
-          <h3>Luxelakes 麓湖</h3>
-
-          <p>
-            International lakeside luxury community for global families.
-          </p>
+  <main>
+    <section class="hero">
+      <div class="wrapper hero-grid">
+        <div>
+          <div class="kicker" data-i18n="hero_kicker">For foreign buyers in Chengdu</div>
+          <h1 data-i18n="hero_title">A Chengdu home, curated like a private hotel collection.</h1>
+          <p class="lead" data-i18n="hero_lead">Ma & Compass guides international clients from city discovery to move-in. We handle planning, airport pickup, private viewings, translation, contract support, relocation setup, and aftercare.</p>
+          <div class="cta-row">
+            <a class="cta primary" href="#contact" data-i18n="hero_cta_primary">Book a private consult</a>
+            <a class="cta secondary" href="#properties" data-i18n="hero_cta_secondary">See curated communities</a>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric"><b>4M-10M</b><span data-i18n="metric_1">Representative luxury homes in our Chengdu portfolio.</span></div>
+            <div class="metric"><b>1-stop</b><span data-i18n="metric_2">From planning and pickup to signing and settling in.</span></div>
+            <div class="metric"><b>2 languages</b><span data-i18n="metric_3">Every key page, key conversation, and key step in English and Chinese.</span></div>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-content">
+            <div class="small-caps" data-i18n="hero_card_kicker">Why Chengdu</div>
+            <h2 class="title" data-i18n="hero_card_title">A city of comfort, culture, and modern luxury.</h2>
+            <p class="text" data-i18n="hero_card_text">Chengdu offers international schools, strong lifestyle appeal, a growing business base, and a calmer cost profile than Shanghai or Shenzhen. It is an easy city to love, and a practical city to own in.</p>
+            <div class="tag-row">
+              <span class="tag" data-i18n="tag_1">International school access</span>
+              <span class="tag" data-i18n="tag_2">Luxury lifestyle</span>
+              <span class="tag" data-i18n="tag_3">Private viewings</span>
+              <span class="tag" data-i18n="tag_4">Investor-friendly guidance</span>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=1200&auto=format&fit=crop">
-
-        <div class="card-content">
-          <h3>Financial City 金融城</h3>
-
-          <p>
-            CBD residences designed for executives and investors.
-          </p>
+    <section class="section" id="why">
+      <div class="wrapper">
+        <div class="section-head">
+          <div>
+            <div class="small-caps" data-i18n="why_kicker">Why buyers come to Chengdu</div>
+            <h2 class="title" data-i18n="why_title">A lifestyle city with real estate depth.</h2>
+          </div>
+          <p data-i18n="why_text">We frame Chengdu around what foreign buyers care about most: comfort, quality of life, international connectivity, dependable service, and a clear path from interest to possession.</p>
+        </div>
+        <div class="split panel">
+          <div class="copy-pad">
+            <h3 class="small-caps" data-i18n="story_kicker">City story</h3>
+            <p class="text" data-i18n="story_text">From tree-lined communities to urban penthouses, Chengdu has a softer pace without giving up luxury. The city is attractive to executives, families, and investors who want a home base that feels human, warm, and high-end.</p>
+            <div class="tag-row">
+              <span class="tag" data-i18n="story_tag_1">Dining + culture</span>
+              <span class="tag" data-i18n="story_tag_2">Airport access</span>
+              <span class="tag" data-i18n="story_tag_3">Family living</span>
+            </div>
+            <div style="margin-top:24px" class="cta-row">
+              <a class="cta secondary" href="#process" data-i18n="story_cta">How we work</a>
+            </div>
+          </div>
+          <div class="media">
+            <div class="badge" data-i18n="media_badge">Featured visual slot for a Chengdu city video or image sequence</div>
+            <img alt="Chengdu luxury lifestyle visual" src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=1600&auto=format&fit=crop">
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200&auto=format&fit=crop">
-
-        <div class="card-content">
-          <h3>Huanhuaxi 浣花溪</h3>
-
-          <p>
-            Chengdu classic luxury surrounded by greenery and culture.
-          </p>
+    <section class="section" id="properties">
+      <div class="wrapper">
+        <div class="section-head">
+          <div>
+            <div class="small-caps" data-i18n="prop_kicker">Representative communities</div>
+            <h2 class="title" data-i18n="prop_title">Curated for the 4M-10M RMB bracket.</h2>
+          </div>
+          <p data-i18n="prop_text">These are sample positioning targets for your demo site. You can swap in exact current listings later without changing the page structure.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <h3 data-i18n="c1_title">Luxelakes / 麓湖</h3>
+            <p data-i18n="c1_text">A signature lifestyle community for buyers who want privacy, waterfront atmosphere, and a premium family-friendly feel.</p>
+            <div class="meta"><span data-i18n="c1_meta1">Budget: 4.5M-9M RMB</span><span data-i18n="c1_meta2">Best for: families</span></div>
+          </article>
+          <article class="card">
+            <h3 data-i18n="c2_title">Financial City / 金融城</h3>
+            <p data-i18n="c2_text">Executive-grade apartments and urban residences near the city's business core, ideal for a high-convenience lifestyle.</p>
+            <div class="meta"><span data-i18n="c2_meta1">Budget: 4M-8M RMB</span><span data-i18n="c2_meta2">Best for: executives</span></div>
+          </article>
+          <article class="card">
+            <h3 data-i18n="c3_title">Huanhuaxi / 浣花溪</h3>
+            <p data-i18n="c3_text">A classic luxury address with mature greenery, culture, and understated prestige for buyers who value calm and stature.</p>
+            <div class="meta"><span data-i18n="c3_meta1">Budget: 5M-10M RMB</span><span data-i18n="c3_meta2">Best for: long-term ownership</span></div>
+          </article>
+          <article class="card">
+            <h3 data-i18n="c4_title">Tongzilin / 桐梓林</h3>
+            <p data-i18n="c4_text">Popular with international residents thanks to convenience, dining, and a central location that feels easy to live in.</p>
+            <div class="meta"><span data-i18n="c4_meta1">Budget: 4M-7M RMB</span><span data-i18n="c4_meta2">Best for: relocation</span></div>
+          </article>
+          <article class="card">
+            <h3 data-i18n="c5_title">Jiaozi Avenue / 交子大道</h3>
+            <p data-i18n="c5_text">Modern high-rise living with a polished skyline setting and strong appeal for professionals who want a city-first address.</p>
+            <div class="meta"><span data-i18n="c5_meta1">Budget: 5M-10M RMB</span><span data-i18n="c5_meta2">Best for: city life</span></div>
+          </article>
+          <article class="card">
+            <h3 data-i18n="c6_title">Tianfu New Area / 天府新区</h3>
+            <p data-i18n="c6_text">A growth-focused district with new master plans, upgraded infrastructure, and large-format homes for future-minded buyers.</p>
+            <div class="meta"><span data-i18n="c6_meta1">Budget: 4M-8M RMB</span><span data-i18n="c6_meta2">Best for: value + growth</span></div>
+          </article>
         </div>
       </div>
+    </section>
 
-    </div>
+    <section class="section" id="process">
+      <div class="wrapper">
+        <div class="section-head">
+          <div>
+            <div class="small-caps" data-i18n="process_kicker">One-stop service</div>
+            <h2 class="title" data-i18n="process_title">A simple path from first message to move-in.</h2>
+          </div>
+          <p data-i18n="process_text">We keep the process structured so clients feel safe, informed, and supported at every step.</p>
+        </div>
+        <div class="steps">
+          <div class="step"><div class="num">01</div><h3 data-i18n="s1_title">Planning</h3><p data-i18n="s1_text">We understand goals, budget, timing, family needs, and preferred lifestyle before any viewing begins.</p></div>
+          <div class="step"><div class="num">02</div><h3 data-i18n="s2_title">Airport pickup</h3><p data-i18n="s2_text">We can greet clients on arrival and help set the tone with a smooth first day in Chengdu.</p></div>
+          <div class="step"><div class="num">03</div><h3 data-i18n="s3_title">Private touring</h3><p data-i18n="s3_text">We arrange curated viewings, community comparisons, and neighborhood context instead of random property hopping.</p></div>
+          <div class="step"><div class="num">04</div><h3 data-i18n="s4_title">Translation</h3><p data-i18n="s4_text">We support communication with developers, agents, and legal helpers so no detail is lost.</p></div>
+          <div class="step"><div class="num">05</div><h3 data-i18n="s5_title">Signing support</h3><p data-i18n="s5_text">We help with documentation, negotiation points, and the handover process so the transaction feels organized.</p></div>
+          <div class="step"><div class="num">06</div><h3 data-i18n="s6_title">Aftercare</h3><p data-i18n="s6_text">We remain available for setup, local services, move-in coordination, and ongoing investment questions.</p></div>
+        </div>
+      </div>
+    </section>
 
+    <section class="section">
+      <div class="wrapper">
+        <div class="section-head">
+          <div>
+            <div class="small-caps" data-i18n="case_kicker">Illustrative client stories</div>
+            <h2 class="title" data-i18n="case_title">Virtual cases that feel real.</h2>
+          </div>
+          <p data-i18n="case_text">These are sample narratives for the demo site. They are written to make the service feel credible, calm, and specific.</p>
+        </div>
+        <div class="timeline">
+          <article class="story">
+            <div class="label" data-i18n="case1_label">Case 01</div>
+            <h3 data-i18n="case1_title">Singapore family</h3>
+            <p data-i18n="case1_text">Wanted a quiet family base near schools and parks. We shortlisted five communities, arranged airport pickup, and helped them choose a home with the right balance of privacy and convenience.</p>
+          </article>
+          <article class="story">
+            <div class="label" data-i18n="case2_label">Case 02</div>
+            <h3 data-i18n="case2_title">European executive</h3>
+            <p data-i18n="case2_text">Needed fast, reliable support during a short trip. We translated every step, narrowed the options, and kept the process calm from first viewing to contract signing.</p>
+          </article>
+          <article class="story">
+            <div class="label" data-i18n="case3_label">Case 03</div>
+            <h3 data-i18n="case3_title">Hong Kong investor</h3>
+            <p data-i18n="case3_text">Wanted a premium Chengdu address with practical value. We focused on district quality, future potential, and lifestyle fit instead of just headline price.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="wrapper">
+        <div class="section-head">
+          <div>
+            <div class="small-caps" data-i18n="contact_kicker">Start the conversation</div>
+            <h2 class="title" data-i18n="contact_title">Tell us your budget, timing, and style.</h2>
+          </div>
+          <p data-i18n="contact_text">Virtual contact channels are shown here for the demo. Replace them with your real details before launch.</p>
+        </div>
+        <div class="contact panel">
+          <form class="form">
+            <input class="field" type="text" placeholder="Your name / 姓名">
+            <input class="field" type="email" placeholder="Email / 邮箱">
+            <input class="field" type="text" placeholder="WhatsApp / 电话">
+            <textarea class="field" rows="5" placeholder="Tell us what you want in Chengdu / 说明你的需求"></textarea>
+            <button class="cta primary" type="button" data-i18n="contact_button">Request a private consultation</button>
+            <div class="note" data-i18n="contact_note">No pressure, no spam, just a clear next step for serious buyers who want Chengdu done properly.</div>
+          </form>
+          <div class="contact-list">
+            <div class="contact-item"><div><span>WeChat</span><b>MaCompass</b></div><a href="#contact">Add on WeChat</a></div>
+            <div class="contact-item"><div><span>WhatsApp</span><b>+86 138 0000 2468</b></div><a href="https://wa.me/8613800002468">Chat</a></div>
+            <div class="contact-item"><div><span>Email</span><b>hello@macompass.com</b></div><a href="mailto:hello@macompass.com">Send</a></div>
+            <div class="contact-item"><div><span>Phone</span><b>+86 028 8888 6688</b></div><a href="tel:+8602888886688">Call</a></div>
+            <div class="contact-item"><div><span>Video slot</span><b data-i18n="video_slot">Insert a Chengdu promo reel here</b></div><a href="#why">Preview</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrapper footer">
+    <div>Ma & Compass © 2026</div>
+    <div data-i18n="footer_text">Luxury Chengdu property advisory, bilingual and built for international buyers.</div>
+  </footer>
+
+  <div class="floating">
+    <a class="float-btn" href="#contact" data-i18n="float_consult">Consult</a>
+    <a class="float-btn" href="https://wa.me/8613800002468">WhatsApp</a>
   </div>
-</section>
 
-<section class="section">
-  <div class="container">
+  <script>
+    const copy = {
+      en: {
+        nav_tagline: "Luxury property advisory for Chengdu's international lifestyle.",
+        nav_properties: "Properties",
+        nav_contact: "Contact",
+        hero_kicker: "For foreign buyers in Chengdu",
+        hero_title: "A Chengdu home, curated like a private hotel collection.",
+        hero_lead: "Ma & Compass guides international clients from city discovery to move-in. We handle planning, airport pickup, private viewings, translation, contract support, relocation setup, and aftercare.",
+        hero_cta_primary: "Book a private consult",
+        hero_cta_secondary: "See curated communities",
+        metric_1: "Representative luxury homes in our Chengdu portfolio.",
+        metric_2: "From planning and pickup to signing and settling in.",
+        metric_3: "Every key page, key conversation, and key step in English and Chinese.",
+        hero_card_kicker: "Why Chengdu",
+        hero_card_title: "A city of comfort, culture, and modern luxury.",
+        hero_card_text: "Chengdu offers international schools, strong lifestyle appeal, a growing business base, and a calmer cost profile than Shanghai or Shenzhen. It is an easy city to love, and a practical city to own in.",
+        tag_1: "International school access",
+        tag_2: "Luxury lifestyle",
+        tag_3: "Private viewings",
+        tag_4: "Investor-friendly guidance",
+        why_kicker: "Why buyers come to Chengdu",
+        why_title: "A lifestyle city with real estate depth.",
+        why_text: "We frame Chengdu around what foreign buyers care about most: comfort, quality of life, international connectivity, dependable service, and a clear path from interest to possession.",
+        story_kicker: "City story",
+        story_text: "From tree-lined communities to urban penthouses, Chengdu has a softer pace without giving up luxury. The city is attractive to executives, families, and investors who want a home base that feels human, warm, and high-end.",
+        story_tag_1: "Dining + culture",
+        story_tag_2: "Airport access",
+        story_tag_3: "Family living",
+        story_cta: "How we work",
+        media_badge: "Featured visual slot for a Chengdu city video or image sequence",
+        prop_kicker: "Representative communities",
+        prop_title: "Curated for the 4M-10M RMB bracket.",
+        prop_text: "These are sample positioning targets for your demo site. You can swap in exact current listings later without changing the page structure.",
+        c1_title: "Luxelakes / 麓湖",
+        c1_text: "A signature lifestyle community for buyers who want privacy, waterfront atmosphere, and a premium family-friendly feel.",
+        c1_meta1: "Budget: 4.5M-9M RMB",
+        c1_meta2: "Best for: families",
+        c2_title: "Financial City / 金融城",
+        c2_text: "Executive-grade apartments and urban residences near the city's business core, ideal for a high-convenience lifestyle.",
+        c2_meta1: "Budget: 4M-8M RMB",
+        c2_meta2: "Best for: executives",
+        c3_title: "Huanhuaxi / 浣花溪",
+        c3_text: "A classic luxury address with mature greenery, culture, and understated prestige for buyers who value calm and stature.",
+        c3_meta1: "Budget: 5M-10M RMB",
+        c3_meta2: "Best for: long-term ownership",
+        c4_title: "Tongzilin / 桐梓林",
+        c4_text: "Popular with international residents thanks to convenience, dining, and a central location that feels easy to live in.",
+        c4_meta1: "Budget: 4M-7M RMB",
+        c4_meta2: "Best for: relocation",
+        c5_title: "Jiaozi Avenue / 交子大道",
+        c5_text: "Modern high-rise living with a polished skyline setting and strong appeal for professionals who want a city-first address.",
+        c5_meta1: "Budget: 5M-10M RMB",
+        c5_meta2: "Best for: city life",
+        c6_title: "Tianfu New Area / 天府新区",
+        c6_text: "A growth-focused district with new master plans, upgraded infrastructure, and large-format homes for future-minded buyers.",
+        c6_meta1: "Budget: 4M-8M RMB",
+        c6_meta2: "Best for: value + growth",
+        process_kicker: "One-stop service",
+        process_title: "A simple path from first message to move-in.",
+        process_text: "We keep the process structured so clients feel safe, informed, and supported at every step.",
+        s1_title: "Planning",
+        s1_text: "We understand goals, budget, timing, family needs, and preferred lifestyle before any viewing begins.",
+        s2_title: "Airport pickup",
+        s2_text: "We can greet clients on arrival and help set the tone with a smooth first day in Chengdu.",
+        s3_title: "Private touring",
+        s3_text: "We arrange curated viewings, community comparisons, and neighborhood context instead of random property hopping.",
+        s4_title: "Translation",
+        s4_text: "We support communication with developers, agents, and legal helpers so no detail is lost.",
+        s5_title: "Signing support",
+        s5_text: "We help with documentation, negotiation points, and the handover process so the transaction feels organized.",
+        s6_title: "Aftercare",
+        s6_text: "We remain available for setup, local services, move-in coordination, and ongoing investment questions.",
+        case_kicker: "Illustrative client stories",
+        case_title: "Virtual cases that feel real.",
+        case_text: "These are sample narratives for the demo site. They are written to make the service feel credible, calm, and specific.",
+        case1_label: "Case 01",
+        case1_title: "Singapore family",
+        case1_text: "Wanted a quiet family base near schools and parks. We shortlisted five communities, arranged airport pickup, and helped them choose a home with the right balance of privacy and convenience.",
+        case2_label: "Case 02",
+        case2_title: "European executive",
+        case2_text: "Needed fast, reliable support during a short trip. We translated every step, narrowed the options, and kept the process calm from first viewing to contract signing.",
+        case3_label: "Case 03",
+        case3_title: "Hong Kong investor",
+        case3_text: "Wanted a premium Chengdu address with practical value. We focused on district quality, future potential, and lifestyle fit instead of just headline price.",
+        contact_kicker: "Start the conversation",
+        contact_title: "Tell us your budget, timing, and style.",
+        contact_text: "Virtual contact channels are shown here for the demo. Replace them with your real details before launch.",
+        contact_button: "Request a private consultation",
+        contact_note: "No pressure, no spam, just a clear next step for serious buyers who want Chengdu done properly.",
+        video_slot: "Insert a Chengdu promo reel here",
+        footer_text: "Luxury Chengdu property advisory, bilingual and built for international buyers.",
+        float_consult: "Consult"
+      },
+      zh: {
+        nav_tagline: "面向成都国际生活方式的豪宅房产顾问。",
+        nav_properties: "房源",
+        nav_contact: "联系",
+        hero_kicker: "面向外籍买家的成都置业服务",
+        hero_title: "把成都的家，做成像私享酒店一样的选择。",
+        hero_lead: "Ma & Compass 为国际客户提供从城市认知到入住落地的一站式服务，涵盖规划、接机、私带看、翻译、签约协助、落地服务和后续陪同。",
+        hero_cta_primary: "预约私享咨询",
+        hero_cta_secondary: "查看精选社区",
+        metric_1: "示例房源总价覆盖 400 万到 1000 万人民币。",
+        metric_2: "从规划、接机到签约和入住，全流程支持。",
+        metric_3: "所有关键页面、关键沟通、关键步骤都提供中英双语。",
+        hero_card_kicker: "为什么是成都",
+        hero_card_title: "舒适、文化与现代豪宅并存的城市。",
+        hero_card_text: "成都兼具国际学校、生活方式吸引力、持续增长的商业基础，以及比上海或深圳更友好的成本结构。它既容易让人喜欢，也适合真正长期持有。",
+        tag_1: "国际学校资源",
+        tag_2: "豪宅生活方式",
+        tag_3: "私享带看",
+        tag_4: "更适合投资判断",
+        why_kicker: "为什么买家会来到成都",
+        why_title: "有生活感，也有房产深度。",
+        why_text: "我们把成都讲成外国买家最在意的几个词：舒适、生活质量、国际连接、可靠服务，以及从兴趣到成交的清晰路径。",
+        story_kicker: "城市故事",
+        story_text: "从林荫社区到城市高层公寓，成都的节奏更柔和，但豪宅感并没有被削弱。这里适合高管、家庭和投资型买家把它当成一处温暖、体面、长期可用的生活基地。",
+        story_tag_1: "餐饮 + 文化",
+        story_tag_2: "机场便利",
+        story_tag_3: "家庭居住",
+        story_cta: "我们的服务方式",
+        media_badge: "可放置成都宣传视频或图片组的视觉位",
+        prop_kicker: "代表性社区",
+        prop_title: "围绕 400 万到 1000 万人民币区间精选。",
+        prop_text: "这些是测试站的示例定位，后续你可以直接替换成当前真实房源，而不需要改页面结构。",
+        c1_title: "麓湖 / Luxelakes",
+        c1_text: "适合想要私密感、临湖氛围和家庭友好体验的买家。",
+        c1_meta1: "预算：450-900 万",
+        c1_meta2: "适合：家庭客户",
+        c2_title: "金融城 / Financial City",
+        c2_text: "靠近城市商务核心的高端公寓与城市住宅，适合追求高便利生活方式的人群。",
+        c2_meta1: "预算：400-800 万",
+        c2_meta2: "适合：高管客户",
+        c3_title: "浣花溪 / Huanhuaxi",
+        c3_text: "经典豪宅区，兼具成熟绿意、文化底蕴和低调的身份感。",
+        c3_meta1: "预算：500-1000 万",
+        c3_meta2: "适合：长期持有",
+        c4_title: "桐梓林 / Tongzilin",
+        c4_text: "国际居民常选择的生活区，便利、餐饮和中心位置都很友好。",
+        c4_meta1: "预算：400-700 万",
+        c4_meta2: "适合：落地安家",
+        c5_title: "交子大道 / Jiaozi Avenue",
+        c5_text: "现代高层城市生活，天际线感强，适合偏城市中心生活的专业人士。",
+        c5_meta1: "预算：500-1000 万",
+        c5_meta2: "适合：城市生活",
+        c6_title: "天府新区 / Tianfu New Area",
+        c6_text: "偏增长型板块，新规划、基础设施升级、大面积住宅，适合看未来的人。",
+        c6_meta1: "预算：400-800 万",
+        c6_meta2: "适合：价值 + 成长",
+        process_kicker: "一站式服务",
+        process_title: "从第一条消息到入住，一条清晰路径。",
+        process_text: "我们把流程做得很清晰，让客户每一步都安心、明确、有人陪。",
+        s1_title: "规划",
+        s1_text: "先了解目标、预算、时间、家庭需求和喜欢的生活方式，再开始看房。",
+        s2_title: "接机",
+        s2_text: "客户抵达后可安排接机，用舒适的第一天建立对成都的好感。",
+        s3_title: "私享带看",
+        s3_text: "不是随机跑盘，而是精选社区、做对比、讲区域，让看房更有效。",
+        s4_title: "翻译",
+        s4_text: "我们协助与开发商、销售和法律协助方的沟通，确保信息准确传达。",
+        s5_title: "签约协助",
+        s5_text: "协助准备资料、谈判关键点与交付流程，让整个交易更有秩序。",
+        s6_title: "落地服务",
+        s6_text: "入住后我们也能继续帮忙对接本地服务、落地事务和长期投资问题。",
+        case_kicker: "虚拟客户案例",
+        case_title: "看起来真实、讲得清楚。",
+        case_text: "这些是测试站的示例故事，目的在于让服务感更可信、更踏实、更具体。",
+        case1_label: "案例 01",
+        case1_title: "新加坡家庭",
+        case1_text: "希望找一个靠近学校和公园的安静家庭基地。我们筛选了五个社区、安排接机，并帮他们选到一个兼顾私密与便利的家。",
+        case2_label: "案例 02",
+        case2_title: "欧洲高管",
+        case2_text: "只在成都停留很短时间，需要高效且可靠的支持。我们把每一步都翻译清楚，从看房到签约都保持节奏稳定。",
+        case3_label: "案例 03",
+        case3_title: "香港投资者",
+        case3_text: "希望在成都拿下一处兼顾形象与实用性的高端住所。我们重点看板块质量、未来潜力和生活匹配度，而不只是价格。",
+        contact_kicker: "开始对话",
+        contact_title: "告诉我们你的预算、时间和偏好。",
+        contact_text: "这里展示的是测试站的虚拟联系方式，正式上线前请替换成你的真实信息。",
+        contact_button: "申请私享咨询",
+        contact_note: "不催促、不群发，只给认真买家一个清晰下一步。",
+        video_slot: "可在这里放入成都宣传视频",
+        footer_text: "面向国际买家的成都豪宅顾问，双语呈现。",
+        float_consult: "咨询"
+      }
+    };
 
-    <div class="gold">FOREIGN BUYER GUIDE</div>
+    function setLang(lang) {
+      document.body.dataset.lang = lang;
+      document.querySelectorAll('[data-lang-switch]').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.langSwitch === lang);
+      });
+      document.querySelectorAll('[data-i18n]').forEach((node) => {
+        const key = node.dataset.i18n;
+        const value = copy[lang][key];
+        if (typeof value === 'string') node.textContent = value;
+      });
+      localStorage.setItem('macompass-lang', lang);
+    }
 
-    <h2>
-      Get The 2026 Chengdu Luxury Property Guide
-    </h2>
+    document.querySelectorAll('[data-lang-switch]').forEach((btn) => {
+      btn.addEventListener('click', () => setLang(btn.dataset.langSwitch));
+    });
 
-    <p>
-      Learn how foreigners buy property in China,
-      relocation strategies, taxes, luxury communities and investment insights.
-    </p>
-
-    <div class="lead-form">
-      <input placeholder="Your Name">
-      <input placeholder="Email Address">
-      <input placeholder="WhatsApp">
-      <button class="btn primary">
-        Download Free Guide
-      </button>
-    </div>
-
-  </div>
-</section>
-
-<footer>
-  © 2026 Chengdu Elite — Curated by Xiao Ma Ge
-</footer>
-
+    setLang(localStorage.getItem('macompass-lang') || 'en');
+  </script>
 </body>
 </html>
-```
